@@ -6,7 +6,10 @@ table, th, td {
     text-align: center;
 }
 body {
-    background-image: url("BG.GIF");
+    background-image: url("BG.GIF") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
     display: flex;
     margin-bottom: 2%;
