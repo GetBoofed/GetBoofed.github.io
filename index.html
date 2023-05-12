@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<head>
+    <title>I got you, Ryan</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="updateTravelHours()">
+    <form id="optionForm">
+        <h1>Space Travel</h1>
+        <label for="from">Leaving from:</label>
+        <select id="from" onchange="updateTravelHours()">
+            <option value="0">Deep Core</option>
+            <option value="1">Core</option>
+            <option value="2">Colonies</option>
+            <option value="3">Inner Rim</option>
+            <option value="4">Expansion Region</option>
+            <option value="5">Mid Rim</option>
+            <option value="6">Outer Rim</option>
+            <option value="7">Wild Space</option>
+            <option value="8">Unknown Regions</option>
+        </select>
+        <label for="to">Going to:</label>
+        <select id="to" onchange="updateTravelHours()">
+            <option value="0">Deep Core</option>
+            <option value="1">Core</option>
+            <option value="2">Colonies</option>
+            <option value="3">Inner Rim</option>
+            <option value="4">Expansion Region</option>
+            <option value="5">Mid Rim</option>
+            <option value="6">Outer Rim</option>
+            <option value="7">Wild Space</option>
+            <option value="8">Unknown Regions</option>
+        </select>
+        <label for="hoursPerFuel">Hours per 1 fuel usage in space:</label>
+        <input type="number" id="hoursPerFuel" value="24" onchange="updateTravelHours()">
+        <label for="warpDrive">Warp drive time multiplier (Higher number means greater travel times):</label>
+        <input type="number" id="warpDrive" value="1" onchange="updateTravelHours()">
+        <label for="dmExtra">Extra hours from DM:</label>
+        <input type="number" id="dmExtra" value="0" onchange="updateTravelHours()">
+        <label for="dmExtraMulti">Are the extra hours multiplied by the wrap drive modifier?</label>
+        <nobr><input type="checkbox" id="dmExtraMulti" onchange="updateTravelHours()">Yes, multiply</nobr>
+        <br>
+        <label for="spaceTravelHours">Space travel time:</label>
+        <input type="number" id="spaceTravelHours" value="12" disabled>
+        <label for="spaceTravelFuel">Space travel fuel usage:</label>
+        <input type="number" id="spaceTravelFuel" value="0.5" disabled>
+        <br>
+        <h1>Atmosphere Travel</h1>
+        <label for="atmoHours">Hours traveling in atmosphere:</label>
+        <input type="number" id="atmoHours" value="0" onchange="updateTravelHours()">
+        <label for="atmoHoursPerFuel">Hours per 1 fuel usage in atmosphere:</label>
+        <input type="number" id="atmoHoursPerFuel" value="1" onchange="updateTravelHours()">
+        <label for="dmExtraAtmo">Extra atmosphere hours from DM:</label>
+        <input type="number" id="dmExtraAtmo" value="0" onchange="updateTravelHours()">
+        <br>
+        <label for="atmoTravelFuel">Atmosphere travel fuel usage:</label>
+        <input type="number" id="atmoTravelFuel" value="0" disabled>
+        <br>
+        <h1>Total</h1>
+        <label for="fuelTotal">Total fuel usage from all travel:</label>
+        <input type="number" id="fuelTotal" value="0.5" disabled>
+        <br>
+        <h1>Reference Table</h1>
+    </form>
+    <table>
+        <tr>
+            <td>Down then Right</td>
+            <th>Deep Core</th>
+            <th>Core</th>
+            <th>Colonies</th>
+            <th>Inner Rim</th>
+            <th>Expansion Region</th>
+            <th>Mid Rim</th>
+            <th>Outer Rim</th>
+            <th>Wild Space</th>
+            <th>Unknown Regions</th>
+        </tr>
+        <tr>
+            <th>Deep Core</th>
+            <td>12</td>
+            <td>18</td>
+            <td>24</td>
+            <td>48</td>
+            <td>72</td>
+            <td>96</td>
+            <td>120</td>
+            <td>144</td>
+            <td>168</td>
+        </tr>
+        <tr>
+            <th>Core</th>
+            <td>24</td>
+            <td>6</td>
+            <td>24</td>
+            <td>36</td>
+            <td>60</td>
+            <td>84</td>
+            <td>96</td>
+            <td>120</td>
+            <td>144</td>
+        </tr>
+        <tr>
+            <th>Colonies</th>
+            <td>48</td>
+            <td>24</td>
+            <td>12</td>
+            <td>24</td>
+            <td>48</td>
+            <td>72</td>
+            <td>96</td>
+            <td>120</td>
+            <td>96</td>
+        </tr>
+        <tr>
+            <th>Inner Rim</th>
+            <td>72</td>
+            <td>36</td>
+            <td>24</td>
+            <td>18</td>
+            <td>24</td>
+            <td>48</td>
+            <td>72</td>
+            <td>96</td>
+            <td>72</td>
+        </tr>
+        <tr>
+            <th>Expansion Region</th>
+            <td>96</td>
+            <td>60</td>
+            <td>48</td>
+            <td>24</td>
+            <td>24</td>
+            <td>24</td>
+            <td>48</td>
+            <td>72</td>
+            <td>96</td>
+        </tr>
+        <tr>
+            <th>Mid Rim</th>
+            <td>120</td>
+            <td>84</td>
+            <td>72</td>
+            <td>48</td>
+            <td>24</td>
+            <td>36</td>
+            <td>24</td>
+            <td>48</td>
+            <td>72</td>
+        </tr>
+        <tr>
+            <th>Outer Rim</th>
+            <td>144</td>
+            <td>96</td>
+            <td>96</td>
+            <td>72</td>
+            <td>48</td>
+            <td>24</td>
+            <td>48</td>
+            <td>24</td>
+            <td>60</td>
+        </tr>
+        <tr>
+            <th>Wild Space</th>
+            <td>168</td>
+            <td>120</td>
+            <td>120</td>
+            <td>96</td>
+            <td>72</td>
+            <td>48</td>
+            <td>24</td>
+            <td>12</td>
+            <td>120</td>
+        </tr>
+        <tr>
+            <th>Unknown Regions</th>
+            <td>192</td>
+            <td>144</td>
+            <td>96</td>
+            <td>72</td>
+            <td>60</td>
+            <td>72</td>
+            <td>96</td>
+            <td>120</td>
+            <td>48</td>
+        </tr>
+    </table>
+</body>
+<footer>
+    
+</footer>
